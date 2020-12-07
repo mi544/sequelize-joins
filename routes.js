@@ -1,23 +1,19 @@
 const db = require('./models');
 module.exports = function (app) {
   app.get('/api/users', async function (req, res) {
-    res.json(await db.User.findAll());
+    res.json(await db.User.findAll({ include: [db.Token, db.Color, db.Post] }));
   });
 
   app.get('/api/colors', async function (req, res) {
-    res.json(await db.Color.findAll());
+    res.json(await db.Color.findAll({ include: db.User }));
   });
 
   app.get('/api/posts', async function (req, res) {
-    res.json(await db.Post.findAll());
+    res.json(await db.Post.findAll({ include: db.User }));
   });
 
   app.get('/api/tokens', async function (req, res) {
-    res.json(await db.Token.findAll());
-  });
-
-  app.get('/api/userspostsjoint', async function (req, res) {
-    res.json(await db.User.findAll({ include: db.Post }));
+    res.json(await db.Token.findAll({ include: db.User }));
   });
 
   app.get('/', function (req, res) {
@@ -31,8 +27,6 @@ module.exports = function (app) {
     <a href="/api/posts">see posts</a>
     <br />
     <a href="/api/colors">see colors</a>
-    <br />
-    <a href="/api/userspostsjoint">see users posts joint data</a>
     <br />
     `)
     );

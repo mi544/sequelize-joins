@@ -1,6 +1,8 @@
 const db = require('./models');
 (async () => {
   await db.sequelize.sync({ force: true });
+
+  // seeding the database
   const users = [
     {
       name: 'John'
@@ -40,6 +42,6 @@ const db = require('./models');
   ];
   await db.Token.bulkCreate(tokens);
 
-  console.log('Success!');
+  console.log('Data seeded successfully!');
   process.exit(0);
 })();
