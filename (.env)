@@ -13,3 +13,6 @@ PRODPASSWORD=
 PRODDB=
 PRODHOST=
 PRODPORT=
+
+# optionally the port
+# PORT
