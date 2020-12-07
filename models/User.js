@@ -8,6 +8,7 @@ module.exports = function (sequelize, DataTypes) {
   User.associate = function (models) {
     User.hasMany(models.Token);
     User.hasOne(models.Color);
+    User.belongsToMany(models.Post, { through: 'PostsUsers' });
   };
 
   return User;

@@ -29,6 +29,17 @@ const db = require('./models');
     }
   ];
   await db.Post.bulkCreate(posts);
+
+  const tokens = [
+    {
+      token: 'jy43232tyt'
+    },
+    {
+      token: 'we6or87li2'
+    }
+  ];
+  await db.Token.bulkCreate(tokens);
+
   console.log('Success!');
   process.exit(0);
 })();
